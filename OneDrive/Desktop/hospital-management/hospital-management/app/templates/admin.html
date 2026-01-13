@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RG Hospital - Admin Panel</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #f0f7ff, #e0f2fe);
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: #0066cc;
+            margin: 0;
+            font-size: 2.5em;
+        }
+        h2 {
+            color: #0055aa;
+            border-bottom: 3px solid #0066cc;
+            padding-bottom: 10px;
+        }
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,102,204,0.1);
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #0055aa;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #cce5ff;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        input:focus, select:focus {
+            border-color: #0066cc;
+            outline: none;
+        }
+        button {
+            background: #0066cc;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #0055aa;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .back-link {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .back-link a {
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-hospital"></i> Rajiv Gandhi Government Hospital</h1>
+            <p>Admin Panel - Easy Data Management</p>
+        </header>
+
+        <div class="success" id="successMsg">
+            <i class="fas fa-check-circle"></i> Successfully Added!
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-user-md"></i> Add New Doctor</h2>
+            <form action="/add-doctor" method="post">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" name="name" required placeholder="e.g. Dr. Anand Raj">
+                </div>
+                <div class="form-group">
+                    <label>Specialization</label>
+                    <input type="text" name="specialization" required placeholder="e.g. Cardiology">
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="text" name="phone" required placeholder="e.g. 9876543210">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" required placeholder="doctor@rggh.com">
+                </div>
+                <button type="submit"><i class="fas fa-plus"></i> Add Doctor</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-user-injured"></i> Add New Patient</h2>
+            <form action="/add-patient" method="post">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" name="name" required placeholder="e.g. Ramesh Kumar">
+                </div>
+                <div class="form-group">
+                    <label>Age</label>
+                    <input type="number" name="age" required min="1" placeholder="e.g. 45">
+                </div>
+                <div class="form-group">
+                    <label>Gender</label>
+                    <select name="gender" required>
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="text" name="phone" required placeholder="e.g. 9123456780">
+                </div>
+                <div class="form-group">
+                    <label>Email (optional)</label>
+                    <input type="email" name="email" placeholder="patient@gmail.com">
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <input type="text" name="address" placeholder="e.g. 123 MG Road, Mysuru">
+                </div>
+                <button type="submit"><i class="fas fa-plus"></i> Add Patient</button>
+            </form>
+        </div>
+
+        <div class="back-link">
+            <a href="/"><i class="fas fa-home"></i> ← Back to Home</a>
+        </div>
+    </div>
+
+    <script>
+        // Show success message if redirected after adding
+        if (window.location.search.includes('success')) {
+            document.getElementById('successMsg').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
